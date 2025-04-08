@@ -1,0 +1,62 @@
+services:
+  project_zomboid:
+    container_name:
+      project_zomboid
+    build:
+      requirements/project_zomboid
+    volumes:
+      - project_zomboid:/root/Zomboid
+    ports:
+      - "16261:16261/udp"
+      - "16262-16272:16262-16272/udp"
+    restart:
+      always
+
+  satisfactory:
+    container_name:
+      satisfactory
+    build:
+      requirements/satisfactory
+    volumes:
+      - satisfactory_conf:/home/ubuntu/SatisfactoryDedicatedServer/FactoryGame/Saved
+      - satisfactory_save:/home/ubuntu/.config/Epic/FactoryGame/Saved
+    ports:
+      - "7777:7777/udp"
+      - "7777:7777/tcp"
+      - "8888:8888/tcp"
+    restart:
+      always
+
+volumes:
+  project_zomboid:
+    driver:
+      local
+    driver_opts:
+      type:
+        none
+      o:
+        bind
+      device:
+        ~/data/project_zomboid
+
+  satisfactory_conf:
+    driver:
+      local
+    driver_opts:
+      type:
+        none
+      o:
+        bind
+      device:
+        ~/data/satisfactory/conf
+
+  satisfactory_save:
+    driver:
+      local
+    driver_opts:
+      type:
+        none
+      o:
+        bind
+      device:
+        ~/data/satisfactory/save
