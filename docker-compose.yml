@@ -1,16 +1,16 @@
 services:
-  project_zomboid:
-    container_name:
-      project_zomboid
-    build:
-      requirements/project_zomboid
-    volumes:
-      - project_zomboid:/root/Zomboid
-    ports:
-      - "16261:16261/udp"
-      - "16262-16272:16262-16272/udp"
-    restart:
-      always
+  # project_zomboid:
+  #   container_name:
+  #     project_zomboid
+  #   build:
+  #     requirements/project_zomboid
+  #   volumes:
+  #     - project_zomboid:/root/Zomboid
+  #   ports:
+  #     - "16261:16261/udp"
+  #     - "16262-16272:16262-16272/udp"
+  #   restart:
+  #     always
 
   satisfactory:
     container_name:
@@ -28,16 +28,16 @@ services:
       always
 
 volumes:
-  project_zomboid:
-    driver:
-      local
-    driver_opts:
-      type:
-        none
-      o:
-        bind
-      device:
-        ~/data/project_zomboid
+  # project_zomboid:
+  #   driver:
+  #     local
+  #   driver_opts:
+  #     type:
+  #       none
+  #     o:
+  #       bind
+  #     device:
+  #       ~/data/project_zomboid
 
   satisfactory_conf:
     driver:

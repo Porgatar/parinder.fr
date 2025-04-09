@@ -7,6 +7,8 @@ ENV HOME /root
 
 WORKDIR $HOME
 
+COPY tools/entrypoint.sh .
+
 # Insert Steam prompt answers
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN echo steam steam/question select "I AGREE" | debconf-set-selections \
