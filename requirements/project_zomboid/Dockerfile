@@ -8,6 +8,7 @@ ENV HOME /root
 WORKDIR $HOME
 
 COPY tools/entrypoint.sh .
+RUN chmod 755 ./entrypoint.sh
 
 # Insert Steam prompt answers
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]

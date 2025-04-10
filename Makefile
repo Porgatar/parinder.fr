@@ -1,38 +1,56 @@
 MAKEFLAGS=	--silent
 
-all:
-			mkdir -p ~/data/project_zomboid
-			mkdir -p ~/data/satisfactory/conf
-			mkdir -p ~/data/satisfactory/save
-			docker-compose -f docker-compose.yml up -d
-			echo -e $(On_IGreen)"                                 "$(Color_Off)
-			echo -e $(On_IGreen)$(BGreen)"          docker up!            "$(Color_Off)
-			echo -e $(On_IGreen)"                                 "$(Color_Off)
-
-down:
-			docker-compose -f docker-compose.yml down
-			echo -e $(On_IGreen)"                                 "$(Color_Off)
-			echo -e $(On_IGreen)$(BYellow)"         docker down!           "$(Color_Off)
-			echo -e $(On_IGreen)"                                 "$(Color_Off)
+all:		create_dirs
+			docker-compose up -d
 
 clean:
-			docker-compose -f docker-compose.yml down -v --rmi all
-			docker volume prune -f
-			docker network prune -f
+			docker-compose down -v --rmi all
 			echo -e $(On_IGreen)"                                 "$(Color_Off)
-			echo -e $(On_IGreen)$(BYellow)"    project fully cleaned!      "$(Color_Off)
+			echo -e $(On_IGreen)$(BYellow)"       project cleaned!         "$(Color_Off)
 			echo -e $(On_IGreen)"                                 "$(Color_Off)
 
 fclean:		clean
 			mkdir -p ~/save
 			cp -r ~/data/* ~/save
 			sudo rm -rf ~/data/*
+			echo -e $(On_IGreen)"                                 "$(Color_Off)
+			echo -e $(On_IGreen)$(BYellow)"    project fully cleaned!      "$(Color_Off)
+			echo -e $(On_IGreen)"                                 "$(Color_Off)
 
-reboot:		down all
+create_dirs:
+			mkdir -p ~/data/project_zomboid
+			mkdir -p ~/data/satisfactory/conf
+			mkdir -p ~/data/satisfactory/save
+
+up:			create_dirs
+			if [ -z "$(SERVICE)" ]; then \
+				docker-compose up -d; \
+			else \
+				docker-compose up -d $(SERVICE); \
+			fi
+
+down:
+			if [ -z "$(SERVICE)" ]; then \
+				docker-compose down; \
+			else \
+				docker-compose stop $(SERVICE); \
+			fi
+
+reboot:
+			if [ -z "$(SERVICE)" ]; then \
+				docker-compose ps -q | xargs -r docker restart; \
+			else \
+				if [ "$(shell docker-compose ps -q $(SERVICE))" ]; then \
+					docker-compose restart $(SERVICE); \
+				fi \
+			fi
+
+status:
+			docker-compose ps $(SERVICE)
 
 re:			clean all
 
-.PHONY:		all down clean fclean reboot re
+.PHONY:		all up down reboot clean fclean re
 
 #	-	-	-	-	-	Colors	-	-	-	-	-	-	#
 #														|

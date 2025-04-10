@@ -8,7 +8,6 @@ ENV HOME /home/ubuntu
 WORKDIR $HOME
 
 COPY tools/entrypoint.sh .
-
 RUN chmod 755 ./entrypoint.sh
 
 # Insert Steam prompt answers
