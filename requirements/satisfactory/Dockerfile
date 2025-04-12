@@ -1,4 +1,4 @@
-######## INSTALL ########
+######## Satisfactory ########
 
 FROM ubuntu:24.04
 

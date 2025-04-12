@@ -48,7 +48,16 @@ reboot:
 status:
 			docker-compose ps $(SERVICE)
 
-re:			clean all
+re:
+			if [ -z "$(SERVICE)" ]; then \
+				docker-compose down -v --rmi all; \
+				docker-compose up -d; \
+			else \
+				docker-compose stop $(SERVICE); \
+				docker-compose rm -f $(SERVICE); \
+				docker-compose image rm -f parinderfr-$(SERVICE); \
+				docker-compose up -d $(SERVICE); \
+			fi
 
 .PHONY:		all up down reboot clean fclean re
 

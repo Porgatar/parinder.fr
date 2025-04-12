@@ -1,12 +1,30 @@
 services:
+  nginx:
+    build:
+      requirements/nginx
+    ports:
+    # main
+      # - "80:80"
+      # - "443:443"
+      # - "8080"
+    # project_zomboid
+      - "16261-16272:16261-16272/udp"
+    # satisfactory
+      - "7777:7777/udp"
+      - "7777:7777/tcp"
+      - "8888:8888/tcp"
+    networks:
+      - main_network
+    restart:
+      always
+
   project_zomboid:
     build:
       requirements/project_zomboid
     volumes:
       - project_zomboid:/root/Zomboid
-    ports:
-      - "16261:16261/udp"
-      - "16262-16272:16262-16272/udp"
+    networks:
+      - main_network
     restart:
       always
 
@@ -16,10 +34,8 @@ services:
     volumes:
       - satisfactory_conf:/home/ubuntu/SatisfactoryDedicatedServer/FactoryGame/Saved
       - satisfactory_save:/home/ubuntu/.config/Epic/FactoryGame/Saved
-    ports:
-      - "7777:7777/udp"
-      - "7777:7777/tcp"
-      - "8888:8888/tcp"
+    networks:
+      - main_network
     restart:
       always
 
@@ -56,3 +72,8 @@ volumes:
         bind
       device:
         ~/data/satisfactory/save
+
+networks:
+  main_network:
+    driver:
+      bridge

@@ -1,4 +1,4 @@
-######## INSTALL ########
+######## Project Zomboid ########
 
 FROM ubuntu:24.04
 
