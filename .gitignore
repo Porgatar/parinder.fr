@@ -1,0 +1,6 @@
+.env
+secrets
+requirements/nginx/www/dist
+requirements/nginx/www/node_modules
+requirements/nginx/tools/ssl.key
+requirements/nginx/tools/ssl.crt
