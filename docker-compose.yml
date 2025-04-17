@@ -25,6 +25,10 @@ services:
       - project_zomboid:/root/Zomboid
     networks:
       - main_network
+    env_file:
+      - .env
+    secrets:
+      - project_zomboid_admin_pass
     restart:
       always
 
@@ -72,6 +76,10 @@ volumes:
         bind
       device:
         ~/data/satisfactory/save
+
+secrets:
+  project_zomboid_admin_pass:
+    file: secrets/project_zomboid_admin_pass.txt
 
 networks:
   main_network:

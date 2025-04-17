@@ -21,6 +21,7 @@ create_dirs:
 			mkdir -p ~/data/project_zomboid
 			mkdir -p ~/data/satisfactory/conf
 			mkdir -p ~/data/satisfactory/save
+			./config.sh
 
 up:			create_dirs
 			if [ -z "$(SERVICE)" ]; then \
@@ -49,6 +50,7 @@ status:
 			docker-compose ps $(SERVICE)
 
 re:
+			make create_dirs
 			if [ -z "$(SERVICE)" ]; then \
 				docker-compose down -v --rmi all; \
 				docker-compose up -d; \
