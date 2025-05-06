@@ -16,12 +16,16 @@ cat <<EOF > .env
 PROJECT_ZOMBOID_ADMIN_PASS_FILE='/run/secrets/project_zomboid_admin_pass'
 
 # ENSHROUDED
-ENSHROUDED_PASS_FILE='/run/secrets/enshrouded_pass'
+ENSHROUDED_ADMIN_PASS_FILE='/run/secrets/enshrouded_admin_pass'
+ENSHROUDED_FRIEND_PASS_FILE='/run/secrets/enshrouded_friend_pass'
+ENSHROUDED_DEFAULT_PASS_FILE='/run/secrets/enshrouded_default_pass'
 EOF
 
 echo "creating random secret passwords..."
 echo "$(openssl rand -base64 12)" > secrets/project_zomboid_admin_pass.txt
-echo "$(openssl rand -base64 12)" > secrets/enshrouded_pass.txt
+echo "$(openssl rand -base64 12)" > secrets/enshrouded_admin_pass.txt
+echo "$(openssl rand -base64 12)" > secrets/enshrouded_friend_pass.txt
+echo "$(openssl rand -base64 12)" > secrets/enshrouded_default_pass.txt
 
 echo "creating ssl key/crt..."
 openssl req -x509 -newkey rsa:4096 \

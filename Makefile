@@ -21,6 +21,7 @@ create_dirs:
 			mkdir -p ~/data/project_zomboid
 			mkdir -p ~/data/satisfactory/conf
 			mkdir -p ~/data/satisfactory/save
+			mkdir -p ~/data/enshrouded
 			./config.sh
 
 up:			create_dirs

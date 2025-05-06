@@ -1,0 +1,41 @@
+{
+        "name": "Collecteurs de Sable V2",
+        "saveDirectory": "./savegame",
+        "logDirectory": "./logs",
+        "ip": "0.0.0.0",
+        "queryPort": 15637,
+        "slotCount": 6,
+        "voiceChatMode": "Proximity",
+        "enableVoiceChat": false,
+        "enableTextChat": true,
+        "gameSettingsPreset": "Hard",
+        "userGroups": [
+                {
+                "name": "Default",
+                "password": "",
+                "canKickBan": false,
+                "canAccessInventories": true,
+                "canEditBase": true,
+                "canExtendBase": true,
+                "reservedSlots": 0
+                },
+                {
+                "name": "Admin",
+                "password": "",
+                "canKickBan": true,
+                "canAccessInventories": true,
+                "canEditBase": true,
+                "canExtendBase": true,
+                "reservedSlots": 1
+                },
+                {
+                "name": "Friend",
+                "password": "",
+                "canKickBan": false,
+                "canAccessInventories": true,
+                "canEditBase": true,
+                "canExtendBase": true,
+                "reservedSlots": 5
+                }
+        ]
+}

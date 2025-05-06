@@ -13,6 +13,9 @@ services:
       - "7777:7777/udp"
       - "7777:7777/tcp"
       - "8888:8888/tcp"
+    # enshrouded
+      - "15637:15637/udp"
+      - "15637:15637/tcp"
     networks:
       - main_network
     restart:
@@ -40,6 +43,22 @@ services:
       - satisfactory_save:/home/ubuntu/.config/Epic/FactoryGame/Saved
     networks:
       - main_network
+    restart:
+      always
+
+  enshrouded:
+    build:
+      requirements/enshrouded
+    volumes:
+      - enshrouded:/home/ubuntu/EnshroudedDedicatedServer/savegame
+    networks:
+      - main_network
+    env_file:
+      - .env
+    secrets:
+      - enshrouded_admin_pass
+      - enshrouded_friend_pass
+      - enshrouded_default_pass
     restart:
       always
 
@@ -77,9 +96,26 @@ volumes:
       device:
         ~/data/satisfactory/save
 
+  enshrouded:
+    driver:
+      local
+    driver_opts:
+      type:
+        none
+      o:
+        bind
+      device:
+        ~/data/enshrouded
+
 secrets:
   project_zomboid_admin_pass:
     file: secrets/project_zomboid_admin_pass.txt
+  enshrouded_admin_pass:
+    file: secrets/enshrouded_admin_pass.txt
+  enshrouded_friend_pass:
+    file: secrets/enshrouded_friend_pass.txt
+  enshrouded_default_pass:
+    file: secrets/enshrouded_default_pass.txt
 
 networks:
   main_network:
