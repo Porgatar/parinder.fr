@@ -27,12 +27,12 @@ echo "$(openssl rand -base64 12)" > secrets/enshrouded_admin_pass.txt
 echo "$(openssl rand -base64 12)" > secrets/enshrouded_friend_pass.txt
 echo "$(openssl rand -base64 12)" > secrets/enshrouded_default_pass.txt
 
-echo "creating ssl key/crt..."
-openssl req -x509 -newkey rsa:4096 \
-    -keyout requirements/nginx/tools/ssl.key \
-    -out requirements/nginx/tools/ssl.crt \
-    -sha256 -days 3650 -nodes \
-    -subj "/C=FR/ST=Charente/L=Angoulême/O=42/OU=42/CN=ft_transcendence.42.fr" \
-	> /dev/null 2>&1
+# echo "creating ssl key/crt..."
+# openssl req -x509 -newkey rsa:4096 \
+#     -keyout requirements/nginx/tools/ssl.key \
+#     -out requirements/nginx/tools/ssl.crt \
+#     -sha256 -days 3650 -nodes \
+#     -subj "/C=<?>/ST=<?>/L=<?>/O=<?>/OU=<?>/CN=<?>" \
+# 	> /dev/null 2>&1
 
 echo "Done."
