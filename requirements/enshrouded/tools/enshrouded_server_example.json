@@ -1,5 +1,5 @@
 {
-        "name": "Collecteurs de Sable V2",
+        "name": "enshrouded dedicated server",
         "saveDirectory": "./savegame",
         "logDirectory": "./logs",
         "ip": "0.0.0.0",
@@ -8,7 +8,7 @@
         "voiceChatMode": "Proximity",
         "enableVoiceChat": false,
         "enableTextChat": true,
-        "gameSettingsPreset": "Hard",
+        "gameSettingsPreset": "Default",
         "userGroups": [
                 {
                 "name": "Default",
