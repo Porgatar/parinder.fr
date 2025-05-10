@@ -7,20 +7,6 @@ steamcmd \
     +app_update 2278520 validate \
     +quit
 
-# Eding server password
-ADMIN_PASSWORD=$(cat "$ENSHROUDED_ADMIN_PASS_FILE")
-FRIEND_PASSWORD=$(cat "$ENSHROUDED_FRIEND_PASS_FILE")
-DEFAULT_PASSWORD=$(cat "$ENSHROUDED_DEFAULT_PASS_FILE")
-CONF_PATH="EnshroudedDedicatedServer/enshrouded_server.json"
-
-jq --arg admin_pass "$ADMIN_PASSWORD" \
-    --arg friend_pass "$FRIEND_PASSWORD" \
-    --arg default_pass "$DEFAULT_PASSWORD" \
-    '(.userGroups[] | select(.name == "Admin")).password = $admin_pass |
-    (.userGroups[] | select(.name == "Friend")).password = $friend_pass |
-    (.userGroups[] | select(.name == "Default")).password = $default_pass' \
-    "$CONF_PATH" > "${CONF_PATH}.tmp" && mv "${CONF_PATH}.tmp" "$CONF_PATH"
-
 # Wine talks too much and it's annoying
 export WINEDEBUG=-all
 
