@@ -15,16 +15,16 @@ RUN chmod 755 ./entrypoint.sh
 # Insert Steam prompt answers
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN echo steam steam/question select "I AGREE" | debconf-set-selections \
- && echo steam steam/license note '' | debconf-set-selections
+    && echo steam steam/license note '' | debconf-set-selections
 
- # Update the repository and install SteamCMD
+# Update the repository and install SteamCMD
 ARG DEBIAN_FRONTEND=noninteractive
 RUN dpkg --add-architecture i386 \
- && apt-get update -y \
- && apt-get install -y --no-install-recommends ca-certificates locales steamcmd \
- && rm -rf /var/lib/apt/lists/*
+    && apt-get update -y \
+    && apt-get install -y --no-install-recommends ca-certificates locales steamcmd \
+    && rm -rf /var/lib/apt/lists/*
 
- # Add unicode support
+# Add unicode support
 RUN locale-gen en_US.UTF-8
 ENV LANG 'en_US.UTF-8'
 ENV LANGUAGE 'en_US:en'
@@ -37,14 +37,14 @@ RUN steamcmd +quit
 
 # Fix missing directories and libraries
 RUN mkdir -p $HOME/.steam \
- && ln -s $HOME/.local/share/Steam/steamcmd/linux32 $HOME/.steam/sdk32 \
- && ln -s $HOME/.local/share/Steam/steamcmd/linux64 $HOME/.steam/sdk64 \
- && ln -s $HOME/.steam/sdk32/steamclient.so $HOME/.steam/sdk32/steamservice.so \
- && ln -s $HOME/.steam/sdk64/steamclient.so $HOME/.steam/sdk64/steamservice.so
+    && ln -s $HOME/.local/share/Steam/steamcmd/linux32 $HOME/.steam/sdk32 \
+    && ln -s $HOME/.local/share/Steam/steamcmd/linux64 $HOME/.steam/sdk64 \
+    && ln -s $HOME/.steam/sdk32/steamclient.so $HOME/.steam/sdk32/steamservice.so \
+    && ln -s $HOME/.steam/sdk64/steamclient.so $HOME/.steam/sdk64/steamservice.so
 
 # Install proton GE and dependency
 ENV EXTERNAL_CONFIG 0
-ENV GE_PROTON_VERSION "9-25"
+ENV GE_PROTON_VERSION "9-27"
 ENV STEAM_SDK64_PATH="$HOME/.steam/sdk64"
 ENV STEAM_SDK32_PATH="$HOME/.steam/sdk32"
 ENV STEAM_COMPAT_CLIENT_INSTALL_PATH "$HOME/.local/share/Steam/steamcmd/"

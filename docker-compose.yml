@@ -53,12 +53,6 @@ services:
       - enshrouded:/home/ubuntu/EnshroudedDedicatedServer/savegame
     networks:
       - main_network
-    env_file:
-      - .env
-    secrets:
-      - enshrouded_admin_pass
-      - enshrouded_friend_pass
-      - enshrouded_default_pass
     restart:
       always
 
@@ -110,12 +104,6 @@ volumes:
 secrets:
   project_zomboid_admin_pass:
     file: secrets/project_zomboid_admin_pass.txt
-  enshrouded_admin_pass:
-    file: secrets/enshrouded_admin_pass.txt
-  enshrouded_friend_pass:
-    file: secrets/enshrouded_friend_pass.txt
-  enshrouded_default_pass:
-    file: secrets/enshrouded_default_pass.txt
 
 networks:
   main_network:
