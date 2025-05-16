@@ -15,7 +15,6 @@ services:
       - "8888:8888/tcp"
     # enshrouded
       - "15637:15637/udp"
-      - "15637:15637/tcp"
     networks:
       - main_network
     restart:
