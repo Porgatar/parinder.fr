@@ -3,6 +3,7 @@
 # update server
 steamcmd \
     +@sSteamCmdForcePlatformType windows \
+    +force_install_dir $HOME/EnshroudedDedicatedServer \
 	+login anonymous \
     +app_update 2278520 validate \
     +quit
