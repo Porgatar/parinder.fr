@@ -4,8 +4,8 @@ services:
       requirements/nginx
     ports:
     # main
-      # - "80:80"
-      # - "443:443"
+      - "80:80"
+      - "443:443"
       # - "8080"
     # project_zomboid
       - "16261-16272:16261-16272/udp"
