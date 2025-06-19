@@ -10,7 +10,7 @@ chmod 0644 /etc/cron.d/renew-certbot
 crontab /etc/cron.d/renew-certbot
 
 # certification
-if [ ! -f "/etc/letsencrypt/live/$DOMAIN/fullchain.pem" ]; then
+if [ ! -f "/etc/letsencrypt/live/$DOMAIN_NAME/fullchain.pem" ]; then
   echo " [INFO] generating ssl certification"
   certbot certonly \
     --standalone \
