@@ -18,6 +18,7 @@ fclean:		clean
 			echo -e $(On_IGreen)"                                 "$(Color_Off)
 
 create_dirs:
+			mkdir -p ~/data/nginx/cert
 			mkdir -p ~/data/project_zomboid
 			mkdir -p ~/data/satisfactory/conf
 			mkdir -p ~/data/satisfactory/save
