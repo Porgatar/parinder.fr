@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 
 COPY tools/nginx.conf /etc/nginx/nginx.conf
 
-COPY www/html /var/www/html
+COPY www/dist /var/www/html
 
 COPY tools/entrypoint.sh .
 
