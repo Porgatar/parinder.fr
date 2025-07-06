@@ -44,7 +44,7 @@ RUN mkdir -p $HOME/.steam \
 RUN steamcmd \
     +force_install_dir $HOME/SatisfactoryDedicatedServer \
 	+login anonymous \
-    +app_update 1690800 -beta experimental validate \
+    +app_update 1690800 validate \
     +quit
 
 RUN chown -R ubuntu:ubuntu $HOME
